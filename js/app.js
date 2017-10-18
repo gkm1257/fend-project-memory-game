@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cardList = $(".card i");
 
 /*
  * Display the cards on the page
@@ -9,6 +9,7 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+shuffle(cardList);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -17,9 +18,9 @@ function shuffle(array) {
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = array[currentIndex].className;
+        array[currentIndex].className = array[randomIndex].className;
+        array[randomIndex].className = temporaryValue;
     }
 
     return array;
