@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-let cardList = $(".card i");
+let cardList = $(".card");
 
 /*
  * Display the cards on the page
@@ -18,9 +18,9 @@ function shuffle(array) {
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex].className;
-        array[currentIndex].className = array[randomIndex].className;
-        array[randomIndex].className = temporaryValue;
+        temporaryValue = array[currentIndex].getElementsByTagName("i")[0].className;
+        array[currentIndex].getElementsByTagName("i")[0].className = array[randomIndex].getElementsByTagName("i")[0].className;
+        array[randomIndex].getElementsByTagName("i")[0].className = temporaryValue;
     }
 
     return array;
@@ -37,10 +37,10 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-$(".card").click(function() {
+cardList.click(function() {
     if ($(this).hasClass("match") === false) {
-        showCard($(this));
         addToOpen($(this));
+        showCard($(this));
         if (cardOpenList.length > 1) {
             checkMatch($(this));
         }
