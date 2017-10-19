@@ -37,3 +37,35 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+$(".card").click(function() {
+    if ($(this).hasClass("match") === false) {
+        showCard($(this));
+        addToOpen($(this));
+        if (cardOpenList.length > 1) {
+            checkMatch($(this));
+        }
+    }
+});
+
+function showCard(obj) {
+    obj.addClass("show");
+}
+
+let cardOpenList = [];
+function addToOpen(obj) {
+    obj.addClass("open");
+    cardOpenList.push(obj);
+}
+
+function checkMatch(obj) {
+    if (obj.find("i")[0].className === cardOpenList[0].find("i")[0].className) {
+        obj.addClass("match");
+        cardOpenList[0].addClass("match");
+    }
+    // delay 500ms to show the cards
+    setTimeout(function() {
+        obj.removeClass("show open");
+        cardOpenList[0].removeClass("show open");
+        cardOpenList = [];
+    }, 500);
+}
