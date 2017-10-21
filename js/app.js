@@ -88,4 +88,15 @@ function increaseMoveCount() {
     else {
         $(".moves").html(moveCount + " Moves");
     }
+    // change star rarings
+    if (moveCount === 20) {
+        removeStar();
+    }
+    else if (moveCount === 25) {
+        removeStar();
+    }
+}
+
+function removeStar() {
+    $(".fa.fa-star").last()[0].className = "fa fa-star-o";
 }
