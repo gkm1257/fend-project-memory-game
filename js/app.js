@@ -62,6 +62,7 @@ function checkMatch(obj) {
         addMatch(obj);
     }
     removeShowOpen(obj);
+    increaseMoveCount();
 }
 
 function addMatch(obj) {
@@ -76,4 +77,15 @@ function removeShowOpen(obj) {
         cardOpenList[0].removeClass("show open");
         cardOpenList = [];
     }, 500);
+}
+
+let moveCount = 0;
+function increaseMoveCount() {
+    moveCount++;
+    if (moveCount === 1) {
+        $(".moves").html(moveCount + " Move");
+    }
+    else {
+        $(".moves").html(moveCount + " Moves");
+    }
 }
