@@ -39,8 +39,8 @@ function shuffle(array) {
  */
 cardList.click(function() {
     if ($(this).hasClass("match") === false) {
-        addToOpen($(this));
         showCard($(this));
+        addToOpen($(this));
         if (cardOpenList.length > 1) {
             checkMatch($(this));
         }
