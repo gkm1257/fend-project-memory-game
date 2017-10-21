@@ -59,9 +59,17 @@ function addToOpen(obj) {
 
 function checkMatch(obj) {
     if (obj.find("i")[0].className === cardOpenList[0].find("i")[0].className) {
-        obj.addClass("match");
-        cardOpenList[0].addClass("match");
+        addMatch(obj);
     }
+    removeShowOpen(obj);
+}
+
+function addMatch(obj) {
+    obj.addClass("match");
+    cardOpenList[0].addClass("match");
+}
+
+function removeShowOpen(obj) {
     // delay 500ms to show the cards
     setTimeout(function() {
         obj.removeClass("show open");
