@@ -60,9 +60,16 @@ function addToOpen(obj) {
 function checkMatch(obj) {
     if (obj.find("i")[0].className === cardOpenList[0].find("i")[0].className) {
         addMatch(obj);
+        matchCount += 2;
     }
     removeShowOpen(obj);
     increaseMoveCount();
+
+    if (matchCount == 2) {
+        setTimeout(function() {
+            winning();
+        }, 1000);
+    }
 }
 
 function addMatch(obj) {
@@ -100,3 +107,32 @@ function increaseMoveCount() {
 function removeStar() {
     $(".fa.fa-star").last()[0].className = "fa fa-star-o";
 }
+
+// reset game
+$(".restart").click(function() {
+    reset();
+});
+function reset() {
+    moveCount = 0;
+    $(".moves").html(moveCount + " Move");
+    cardOpenList = [];
+    matchCount = 0;
+    $(".match").removeClass("match");
+    shuffle(cardList);
+    $(".fa.fa-star-o").each(function() {
+        $(this)[0].className = "fa fa-star";
+    });
+}
+
+let matchCount = 0;
+function winning() {
+    document.getElementsByClassName("container")[0].style.display = 'none';
+    document.getElementsByClassName("winning")[0].style.display = 'block';
+}
+
+// replay button
+$(".button").click(function() {
+    document.getElementsByClassName("container")[0].style.display = 'flex';
+    document.getElementsByClassName("winning")[0].style.display = 'none';
+    reset();
+});

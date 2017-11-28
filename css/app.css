@@ -113,3 +113,34 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/* Styles for winning message */
+.winning {
+    text-align: center;
+    position: absolute;
+    background-color: white;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.winningContent {
+    display: table;
+    width: 500px;
+    height: 100%;
+    text-align: center;
+    border: solid #02ccba;
+    margin: auto;
+}
+.contents {
+    display: table-cell;
+    vertical-align: middle;
+}
+.button {
+    cursor: pointer;
+    background: #02ccba;
+    border-radius: 3px;
+    color: #fff;
+    width: 160px;
+    margin: 0 auto;
+}
