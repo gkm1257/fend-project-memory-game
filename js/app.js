@@ -68,7 +68,7 @@ function checkMatch(obj) {
     if (matchCount == 2) {
         setTimeout(function() {
             winning();
-        }, 1000);
+        }, 2500);
     }
 }
 
