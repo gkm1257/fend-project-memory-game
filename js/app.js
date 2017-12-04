@@ -38,7 +38,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 cardList.click(function() {
-    if ($(this).hasClass("match") === false && $(this).hasClass("open") === false) {
+    if ($(this).hasClass("match") === false && $(this).hasClass("open") === false && cardOpenList.length < 2) {
         showCard($(this));
         addToOpen($(this));
         if (cardOpenList.length > 1) {
@@ -68,7 +68,7 @@ function checkMatch(obj) {
     removeShowOpen(obj);
     increaseMoveCount();
 
-    if (matchCount == 2) {
+    if (matchCount == 16) {
         setTimeout(function() {
             winning();
         }, 1000);
