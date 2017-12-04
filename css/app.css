@@ -88,6 +88,14 @@ h1 {
     -webkit-animation: matched .6s ease;
 }
 
+.deck .card.wrong {
+    cursor: default;
+    background: #d21f3c;
+    font-size: 33px;
+    transform: rotateY(0);
+    -webkit-animation: wrong .6s ease;
+}
+
 /*
  * Animation of correct match
  */
@@ -97,6 +105,16 @@ h1 {
     55% {transform: scale(0.8,1.2);}
     70% {transform: scale(1.2,0.9);}
     85% {transform: scale(0.9,1.1);}
+}
+
+/*
+ * Animation of incorrect match
+ */
+@-webkit-keyframes wrong {
+    0%,100% {transform: translate(0) rotate(0);}
+    25% {transform: translate(-40px) rotate(-5deg);}
+    50% {transform: translate(15px) rotate(2deg);}
+    75% {transform: translate(-20px) rotate(-3deg);}
 }
 
 /*

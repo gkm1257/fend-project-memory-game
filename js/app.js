@@ -62,13 +62,16 @@ function checkMatch(obj) {
         addMatch(obj);
         matchCount += 2;
     }
+    else {
+        addWrong(obj);
+    }
     removeShowOpen(obj);
     increaseMoveCount();
 
     if (matchCount == 2) {
         setTimeout(function() {
             winning();
-        }, 2500);
+        }, 1000);
     }
 }
 
@@ -76,14 +79,18 @@ function addMatch(obj) {
     obj.addClass("match");
     cardOpenList[0].addClass("match");
 }
+function addWrong(obj) {
+    obj.addClass("wrong");
+    cardOpenList[0].addClass("wrong");
+}
 
 function removeShowOpen(obj) {
     // delay 500ms to show the cards
     setTimeout(function() {
-        obj.removeClass("show open");
-        cardOpenList[0].removeClass("show open");
+        obj.removeClass("show open wrong");
+        cardOpenList[0].removeClass("show open wrong");
         cardOpenList = [];
-    }, 500);
+    }, 800);
 }
 
 let moveCount = 0;
