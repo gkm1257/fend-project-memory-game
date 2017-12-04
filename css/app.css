@@ -159,7 +159,6 @@ h1 {
     width: 500px;
     height: 100%;
     text-align: center;
-    border: solid #02ccba;
     margin: auto;
 }
 .contents {
@@ -173,4 +172,5 @@ h1 {
     color: #fff;
     width: 160px;
     margin: 0 auto;
+    font-size: 22px;
 }
