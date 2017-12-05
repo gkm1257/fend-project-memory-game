@@ -90,7 +90,7 @@ function removeShowOpen(obj) {
         obj.removeClass("show open wrong");
         cardOpenList[0].removeClass("show open wrong");
         cardOpenList = [];
-    }, 800);
+    }, 500);
 }
 
 let moveCount = 0;
@@ -104,9 +104,11 @@ function increaseMoveCount() {
     }
     // change star rarings
     if (moveCount === 20) {
+        $(".star").html("2 stars");
         removeStar();
     }
     else if (moveCount === 25) {
+        $(".star").html("1 star");
         removeStar();
     }
 }
