@@ -37,7 +37,12 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+let started = 0;
 cardList.click(function() {
+    if (started === 0) {
+        started = 1;
+        gameStart();
+    }
     if ($(this).hasClass("match") === false && $(this).hasClass("open") === false && cardOpenList.length < 2) {
         showCard($(this));
         addToOpen($(this));
@@ -46,6 +51,42 @@ cardList.click(function() {
         }
     }
 });
+
+let sec = 0;
+let timer;
+const second = $(".sec");
+const minute = $(".min");
+const hour = $(".hr");
+function pad(val) { return val > 9 ? val : "0" + val; }
+function gameStart() {
+    let showSec = 0;
+    let showMin = 0;
+    let showHr = 0;
+    timer = setInterval(function() {
+        sec++;
+        showSec = sec % 60;
+        if (showSec == 0 || showSec == 1) {
+            second.html(pad(showSec) + " sec");
+        }
+        else {
+            second.html(pad(showSec) + " secs");
+        }
+        showMin = parseInt(sec / 60) % 60;
+        if (showMin == 0 || showMin == 1) {
+            minute.html(pad(showMin) + " min");
+        }
+        else {
+            minute.html(pad(showMin) + " mins");
+        }
+        showHr = parseInt(sec / (60 * 60));
+        if (showHr == 0 || showHr == 1) {
+            hour.html(pad(showHr) + " hr");
+        }
+        else {
+            hour.html(pad(showHr) + " hrs");
+        }
+    }, 1000);
+}
 
 function showCard(obj) {
     obj.addClass("show");
@@ -69,6 +110,16 @@ function checkMatch(obj) {
     increaseMoveCount();
 
     if (matchCount == 16) {
+        clearInterval(timer);
+        if (parseInt(hour.html()) > 0) {
+            $(".total-time").html(hour.html() + ' : ' + minute.html() + ' : ' + second.html());
+        }
+        else if (parseInt(minute.html()) > 0) {
+            $(".total-time").html(minute.html() + ' : ' + second.html());
+        }
+        else {
+            $(".total-time").html(second.html());
+        }
         setTimeout(function() {
             winning();
         }, 1000);
@@ -122,9 +173,16 @@ $(".restart").click(function() {
     reset();
 });
 function reset() {
+    sec = 0;
+    started = 0;
+    clearInterval(timer);
+    second.html("00 sec");
+    minute.html("00 min");
+    hour.html("00 hr");
     moveCount = 0;
     $(".moves").html(moveCount + " Move");
     cardOpenList = [];
+    $(".show.open").removeClass("show open");
     matchCount = 0;
     $(".match").removeClass("match");
     shuffle(cardList);
