@@ -1,17 +1,13 @@
-/*
- * Create a list that holds all of your cards
- */
-let cardList = $(".card");
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-shuffle(cardList);
+let cardList = $(".card"); // Create a list that holds all cards
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+shuffle(cardList); // Shuffle all cards
+
+/**
+* @description Shuffle an array {@link http://stackoverflow.com/a/2450976}
+* @param {array} array
+* @returns {array} Shuffled array
+*/
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -27,16 +23,6 @@ function shuffle(array) {
 }
 
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 let started = 0;
 cardList.click(function() {
     if (started === 0) {
@@ -57,7 +43,15 @@ let timer;
 const second = $(".sec");
 const minute = $(".min");
 const hour = $(".hr");
+/**
+* @description Pad 0 before single-digit integer
+* @param {number} val
+* @returns {string or number} Padded string or original value
+*/
 function pad(val) { return val > 9 ? val : "0" + val; }
+/**
+* @description Start countup timer {@link https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript}
+*/
 function gameStart() {
     let showSec = 0;
     let showMin = 0;
@@ -88,16 +82,28 @@ function gameStart() {
     }, 1000);
 }
 
+/**
+* @description Show current card
+* @param {object} obj
+*/
 function showCard(obj) {
     obj.addClass("show");
 }
 
 let cardOpenList = [];
+/**
+* @description Open current card and add it to cardOpenList
+* @param {object} obj
+*/
 function addToOpen(obj) {
     obj.addClass("open");
     cardOpenList.push(obj);
 }
 
+/**
+* @description Check if the two opened cards match
+* @param {object} obj
+*/
 function checkMatch(obj) {
     if (obj.find("i")[0].className === cardOpenList[0].find("i")[0].className) {
         addMatch(obj);
@@ -109,8 +115,10 @@ function checkMatch(obj) {
     removeShowOpen(obj);
     increaseMoveCount();
 
+    // When all cards matched
     if (matchCount == 16) {
-        clearInterval(timer);
+        clearInterval(timer); // Stop countup timer
+        // Show total time spent
         if (parseInt(hour.html()) > 0) {
             $(".total-time").html(hour.html() + ' : ' + minute.html() + ' : ' + second.html());
         }
@@ -126,15 +134,27 @@ function checkMatch(obj) {
     }
 }
 
+/**
+* @description Mark current two cards as matched
+* @param {object} obj
+*/
 function addMatch(obj) {
     obj.addClass("match");
     cardOpenList[0].addClass("match");
 }
+/**
+* @description Mark current two cards as wrong
+* @param {object} obj
+*/
 function addWrong(obj) {
     obj.addClass("wrong");
     cardOpenList[0].addClass("wrong");
 }
 
+/**
+* @description Flip the two opened cards down
+* @param {object} obj
+*/
 function removeShowOpen(obj) {
     // delay 500ms to show the cards
     setTimeout(function() {
@@ -145,6 +165,9 @@ function removeShowOpen(obj) {
 }
 
 let moveCount = 0;
+/**
+* @description Count moves and set star rating
+*/
 function increaseMoveCount() {
     moveCount++;
     if (moveCount === 1) {
@@ -153,7 +176,7 @@ function increaseMoveCount() {
     else {
         $(".moves").html(moveCount + " Moves");
     }
-    // change star rarings
+    // change star rating
     if (moveCount === 20) {
         $(".star").html("2 stars");
         removeStar();
@@ -164,14 +187,20 @@ function increaseMoveCount() {
     }
 }
 
+/**
+* @description Change the last filled star to a hollow one
+*/
 function removeStar() {
     $(".fa.fa-star").last()[0].className = "fa fa-star-o";
 }
 
-// reset game
+
 $(".restart").click(function() {
     reset();
 });
+/**
+* @description Reset game
+*/
 function reset() {
     sec = 0;
     started = 0;
@@ -192,6 +221,9 @@ function reset() {
 }
 
 let matchCount = 0;
+/**
+* @description Show winning message
+*/
 function winning() {
     document.getElementsByClassName("container")[0].style.display = 'none';
     document.getElementsByClassName("winning")[0].style.display = 'block';
