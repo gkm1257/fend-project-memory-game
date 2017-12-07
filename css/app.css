@@ -183,3 +183,52 @@ h1 {
 .total-time {
     color: #f00;
 }
+
+
+/* Styles for cross-device compatibility */
+@media screen and (max-width: 600px) {
+    .title {
+        font-size: 30px;
+        height: 30px;
+    }
+    .deck {
+        width: 300px;
+        padding: 10px;
+        min-height: 360px;
+    }
+    .deck .card {
+        width: 65px;
+        height: 65px;
+    }
+    .deck .card.show, .deck .card.match {
+        font-size: 24px;
+    }
+    .score-panel {
+        width: 280px;
+        margin-bottom: 15px;
+    }
+    .score-panel .stars,
+    .score-panel .moves,
+    .score-panel .restart {
+        font-size: 14px;
+    }
+    .score-panel .stars {
+        margin: 0;
+    }
+    .score-panel .timer {
+        width: 152px;
+        font-size: 14px;
+    }
+    .time, .rs { vertical-align: middle; }
+
+    @-webkit-keyframes wrong {
+        0%,100% {transform: translate(0) rotate(0);}
+        25% {transform: translate(-20px) rotate(-5deg);}
+        50% {transform: translate(5px) rotate(2deg);}
+        75% {transform: translate(-10px) rotate(-3deg);}
+    }
+
+    .winningContent {
+        width: 300px;
+    }
+}

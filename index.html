@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Matching Game</title>
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
@@ -12,7 +13,7 @@
 
     <div class="container">
         <header>
-            <h1>Matching Game</h1>
+            <h1><span class="title">Matching Game</span></h1>
         </header>
 
         <section class="score-panel">
@@ -25,13 +26,17 @@
             <span class="moves">0 Move</span>
 
             <div class="timer">
-                <span class="hr">00 hr</span> :
-                <span class="min">00 min</span> :
-                <span class="sec">00 sec</span>
+                <span class="time">
+                  <span class="hr">00 hr</span> :
+                  <span class="min">00 min</span> :
+                  <span class="sec">00 sec</span>
+                </span>
             </div>
 
             <div class="restart">
-                <i class="fa fa-repeat"></i>
+                <span class="rs">
+                  <i class="fa fa-repeat"></i>
+                </span>
             </div>
         </section>
 
@@ -89,10 +94,12 @@
 
     <div class="winning">
         <div class="winningContent">
-            <span class="contents"><h1><strong>Congratulations! You won!</strong></h1>
-            <p>With <span class="moves">0 Move</span> and <span class="star">3 stars</span></p>
-            <p>Spent <span class="total-time"></span> in total</p>
-            <div class="button">Play again!</div></span>
+            <span class="contents">
+                <h1><strong>Congratulations! You won!</strong></h1>
+                <p>With <span class="moves">0 Move</span> and <span class="star">3 stars</span></p>
+                <p>Spent <span class="total-time"></span> in total</p>
+                <div class="button">Play again!</div>
+            </span>
         </div>
     </div>
 
