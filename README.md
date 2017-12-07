@@ -6,7 +6,7 @@
 
 ## Instructions
 
-There are 16 cards on the board with 1 symbol on one side of each card. Total 8 different paris of symbols are randomly arranged to each card.
+There are 16 cards on the board with 1 symbol on one side of each card. Total 8 different pairs of symbols are randomly arranged to each card. To start the game, just click on any card on the board and the timer will start running.
 
 You first flip over one card, then flip another card, trying to find the same symbol as the first one. If 2 cards are matched, they will stay open. Otherwise the cards will turn face down again. One comparison is counted as 1 move.
 
